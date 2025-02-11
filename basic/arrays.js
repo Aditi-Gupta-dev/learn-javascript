@@ -65,5 +65,8 @@ let var2 = clone1[1];
 // if you want to store the remaining part in a new array then simly do
 let [var3, var4, var5, ...mynewarray] = clone1;
 
-console.log(var3, var4, var5);
-console.log(mynewarray);
+// console.log(var3, var4, var5);
+// console.log(mynewarray);
+
+const obj = { ..."abc" };
+console.log(obj);
