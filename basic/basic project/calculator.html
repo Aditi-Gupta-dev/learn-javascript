@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    button {
+      height: 20px;
+      width: 30px;
+      margin: 5px;
+    }
+    .calculator {
+      height: 40vh;
+      width: 50%;
+      padding: 20px;
+      /* border: 2px solid red; */
+      margin: 100px auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      gap: 5px 10px;
+    }
+  </style>
+  <body>
+    <div class="calculator">
+      <input type="text" placeholder="0" id="inputbox" />
+      <div>
+        <button>AC</button>
+        <button>DEL</button>
+        <button>/</button>
+        <button>%</button>
+      </div>
+      <div>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>-</button>
+      </div>
+      <div>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>+</button>
+      </div>
+      <div>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>*</button>
+      </div>
+      <div>
+        <button>00</button>
+        <button>0</button>
+        <button>.</button>
+        <button>=</button>
+      </div>
+    </div>
+
+    <script>
+      const input = document.getElementById("inputbox");
+      console.log(input);
+      let buttons = document.querySelectorAll("button");
+      //   console.log(button);
+
+      let str = "";
+      let array = Array.from(buttons);
+
+      const buttonfunction = function (button) {
+        button.addEventListener("click", (e) => {
+          if (e.target.innerHTML == "=") {
+            str = eval(str);
+            input.value = str;
+          } else if (e.target.innerHTML == "AC") {
+            str = "";
+            input.value = str;
+          } else if (e.target.innerHTML == "DEL") {
+            str = str.slice(0, str.length - 1);
+            input.value = str;
+          } else {
+            str += e.target.innerHTML;
+            input.value = str;
+          }
+        });
+      };
+
+      array.forEach(buttonfunction);
+    </script>
+  </body>
+</html>
