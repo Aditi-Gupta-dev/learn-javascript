@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xhr api</title>
+  </head>
+  <body>
+    <h1>hi Aditi</h1>
+  </body>
+  <script>
+    const url = "https://api.github.com/users/hiteshchoudhary";
+
+    //create a new reqiest from xhrHttpRequest class
+    const xhr = new XMLHttpRequest();
+    //to open the request but this is only a function and works only when the req is send
+    xhr.open("GET", url);
+
+    console.log(xhr.readyState);
+
+    const createp = function (text, data) {
+      const p = document.createElement("p");
+      p.innerHTML = `${text}: ${data}`;
+      document.querySelector("body").appendChild(p);
+    };
+    const createimg = function (imgurl) {
+      const div = document.createElement("div");
+      div.innerHTML = `<img src="${imgurl}" style="heigth:100px;width:100px;">`;
+      document.querySelector("body").appendChild(div);
+    };
+
+    //checking the readystate
+    xhr.onreadystatechange = function () {
+      console.log(xhr.readyState);
+      if (xhr.readyState === 4) {
+        const data = JSON.parse(this.responseText);
+        console.log(data);
+        const followers = data.followers;
+        const bio = data.bio;
+        const imgurl = data.avatar_url;
+        console.log(followers, bio, imgurl);
+        createp("FOLLOWERS", followers);
+        createp("BIO", bio);
+        createimg(imgurl);
+      }
+    };
+
+    //ye nahi kroge to request kabhi send nahi hoga
+    xhr.send();
+  </script>
+</html>
+
+//
